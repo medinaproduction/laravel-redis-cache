@@ -1,0 +1,39 @@
+{
+	"name": "medinaproduction/laravel-redis-cache",
+	"description": "Laravel Redis Cache Package",
+	"type": "library",
+	"keywords": ["laravel"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Edward Karlsson",
+			"email": "edward@medinaproduction.se"
+		}
+	],
+	"require": {
+		"php": "^8.0",
+		"laravel/framework": "^8.0|^9.0"
+	},
+	"require-dev": {
+		"fakerphp/faker": "^1.9",
+		"mockery/mockery": "^1.4",
+		"phpunit/phpunit": "^9.5",
+		"orchestra/testbench": "^7.13"
+	},
+	"autoload": {
+		"psr-4": {
+			"MedinaProduction\\RedisCache\\": "src/",
+			"MedinaProduction\\RedisCache\\Tests\\": "tests/"
+		}
+	},
+	"scripts": {
+		"test": "vendor/bin/phpunit"
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"MedinaProduction\\RedisCache\\ServiceProvider"
+			]
+		}
+	}
+}
