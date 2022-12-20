@@ -2,7 +2,7 @@
 	"name": "medinaproduction/laravel-redis-cache",
 	"description": "Laravel Redis Cache Package",
 	"type": "library",
-	"keywords": ["laravel"],
+	"keywords": ["laravel", "redis"],
 	"license": "MIT",
 	"authors": [
 		{
