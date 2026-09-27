@@ -61,7 +61,8 @@ class RedisHashStore implements Store, LockProvider
     {
         $value = $this->connection()->hget($this->prefix . $this->namespace, $key);
 
-        return !is_null($value) ? $this->unserialize($value) : null;
+        // phpredis returns false for a missing field. A stored false is serialized, so false always means missing.
+        return !is_null($value) && $value !== false ? $this->unserialize($value) : null;
     }
 
     /**
@@ -192,6 +193,22 @@ class RedisHashStore implements Store, LockProvider
     public function forever($key, $value)
     {
         return (bool) $this->connection()->hset($this->prefix . $this->namespace, $key, $this->serialize($value));
+    }
+
+    /**
+     * Set the expiration of a cached item.
+     *
+     * Items are fields in a Redis hash, which can't expire one by one, so the
+     * expiration is never set.
+     *
+     * @param string $key
+     * @param integer $seconds
+     *
+     * @return boolean
+     */
+    public function touch($key, $seconds)
+    {
+        return false;
     }
 
     /**

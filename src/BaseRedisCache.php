@@ -46,8 +46,6 @@ abstract class BaseRedisCache
         }
 
         if ($ttl) {
-            dump('adding for ' . $ttl . ' seconds');
-
             $store->add($key, $value, $ttl);
         } else {
             $store->forever($key, $value);
